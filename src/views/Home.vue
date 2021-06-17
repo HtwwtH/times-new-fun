@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+  <section class="home">
     <div class="container">
-      <span class="gray-h1">Официальный сайт шрифта</span>
+      <p class="text-xl">Официальный сайт шрифта</p>
       <h1 class="red-large">Times New Roman</h1>
       <div class="slogan">Лаконичный. Привычный. Обычный.</div>
       <div class="appeal__content">
@@ -22,7 +22,7 @@
         made by Alina Povazhnyuk for fun<br />not commercial
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

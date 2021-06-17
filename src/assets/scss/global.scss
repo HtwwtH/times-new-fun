@@ -1,6 +1,19 @@
 @import './vars';
 
+@font-face {
+	font-family: "Times New Roman", Times, serif; 
+	font-style: normal;
+  font-weight: 400;
+	src: url(../fonts/times-new-roman.ttf);
+	font-display: swap;
+}
+
 // reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -51,14 +64,11 @@ button {
   cursor: pointer;
   border: none;
   background-color: transparent;
+  outline: none;
 }
-
-@font-face {
-	font-family: "Times New Roman", Times, serif; 
-	font-style: normal;
-  font-weight: 400;
-	src: url(../fonts/times-new-roman.ttf);
-	font-display: swap;
+input, textarea {
+  font-family: "Times New Roman", Times, serif;
+  outline: none;
 }
 
 // general elements
@@ -69,6 +79,10 @@ a {
 	&:hover {
 		color: $bordo;
 	}
+}
+
+.router-link-active {
+  color: $bordo
 }
 
 .bordo-btn {
@@ -138,10 +152,9 @@ a {
 }
 
 // text styles 
-.gray-h1 {
-  font-size: 3em;
-  line-height: 1;
+h1 {
   color: $gray;
+  margin-bottom: 1em;
 }
 .red-large {
   font-size: 6em;
@@ -164,9 +177,15 @@ p {
 .text-l {
   font-size: 2em;
 }
+.text-xl {
+  font-size: 2.5em;
+}
+.text-xxl {
+  font-size: 3em;
+}
 
 @media (max-width: 1600px) {
-  .gray-h1 {
+  .text-xl {
     font-size: 2.5em;
   }
   .red-large {
@@ -178,7 +197,7 @@ p {
 }
 
 @media (max-width: 1440px) {
-  .gray-h1 {
+  .text-xl {
     font-size: 2em;
   }
 }
@@ -197,7 +216,7 @@ p {
 }
 
 @media (max-width: 475px) {
-  .gray-h1 {
+  .text-xl {
     font-size: 1.5em;
   }
   .red-large {
