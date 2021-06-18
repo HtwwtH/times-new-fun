@@ -1,7 +1,7 @@
 <template>
   <section class="examples">
     <div class="container">
-      <h1 class="text-xl">Примеры использования шрифта Times New Roman</h1>
+      <h1>Примеры использования шрифта Times New Roman</h1>
       <div class="examples__content">
         <div class="examples__column">
           <p class="example__title text-l">Во-первых</p>
@@ -75,9 +75,6 @@ export default {
 
 <style scoped lang="scss">
 @import "@/assets/scss/_vars.scss";
-.examples {
-  margin-bottom: 100px;
-}
 .examples__content {
   display: flex;
   width: 100%;

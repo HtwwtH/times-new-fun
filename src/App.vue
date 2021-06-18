@@ -1,6 +1,8 @@
 <template>
   <Header />
-  <router-view />
+  <transition name="fade">
+    <router-view />
+  </transition>
 </template>
 
 <script>
@@ -15,4 +17,13 @@ export default {
 
 
 <style lang="scss">
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>
