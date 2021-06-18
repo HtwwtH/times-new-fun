@@ -106,9 +106,13 @@ export default {
       return this.articles.filter((el) => el.id != this.articleId);
     },
   },
+  created: function () {
+    window.scrollTo(0, 0);
+  },
   watch: {
     "$route.params.id"() {
       this.articleId = this.$route.params.id;
+      window.scrollTo(0, 0);
     },
   },
 };

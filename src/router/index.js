@@ -5,12 +5,15 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      nofooter: true
+    }
   },
   {
     path: '/history',
     name: 'History',
-    component: () => import('../views/History.vue')
+    component: () => import('../views/History.vue'),
   },
   {
     path: '/examples',

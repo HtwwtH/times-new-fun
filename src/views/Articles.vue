@@ -12,7 +12,10 @@
           <img class="article__img" :src="article.image" alt="" />
         </router-link>
         <div class="article__description">
-          <router-link to="/articles/article/1" class="article__title text-l">
+          <router-link
+            :to="{ name: 'Article', params: { id: article.id } }"
+            class="article__title text-l"
+          >
             Новые стандарты написания курсовых работ: от чего студенты в ужасе
           </router-link>
           <p class="article__date text-s">{{ article.date }}</p>
