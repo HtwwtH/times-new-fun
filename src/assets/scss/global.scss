@@ -76,6 +76,7 @@ section {
   margin-bottom: 100px;
 }
 a {
+  display: block;
 	color: $gray;
 	text-decoration: none;
 	@extend %transition;
@@ -83,9 +84,30 @@ a {
 		color: $bordo;
 	}
 }
+.goback-link {
+  color: $bordo;
+  @extend %transition;
+	&:hover {
+		color: $gray;
+	}
+}
+a img {
+  @extend %transition;
+  &:hover{
+    transform: rotate(-2deg);
+  }
+  
+}
+
 
 .router-link-active {
   color: $bordo
+}
+
+hr {
+  color: $gray;
+  border-width: 2px;
+  margin-bottom: 1em;
 }
 
 .bordo-btn {
@@ -249,9 +271,6 @@ h1, .text-xl {
   }
   .text-m {
     font-size: 1.2em;
-  }
-  .text-l {
-    font-size: 1.3em;
   }
 }
 

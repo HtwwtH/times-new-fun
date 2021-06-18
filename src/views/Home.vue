@@ -25,9 +25,6 @@
   </section>
 </template>
 
-<script>
-</script>
-
 <style scoped lang="scss">
 h1 {
   margin-bottom: 0;

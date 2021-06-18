@@ -1,22 +1,35 @@
 <template>
-  <section class="articles">
+  <section class="article">
     <div class="container">
-      <h1>Статьи про Times New Roman</h1>
-      <div v-for="(article, index) in articles" :key="index" class="article">
-        <router-link
-          :to="{
-            name: 'Article',
-            params: { id: article.id },
-          }"
+      <h1>{{ articles[articleId - 1].title }}</h1>
+      <p class="article__date text-m">
+        {{ articles[articleId - 1].date }}
+      </p>
+      <img :src="articles[articleId - 1].image" alt="" class="article__img" />
+      <p class="article__text text-m" v-html="articles[articleId - 1].text"></p>
+      <router-link to="/articles" class="goback-link text-l"
+        >Вернуться к списку статей</router-link
+      >
+      <hr />
+      <p class="text-l other">Другие статьи</p>
+      <div class="other__content">
+        <div
+          v-for="(article, index) in otherArticles"
+          :key="index"
+          class="other__card"
         >
-          <img class="article__img" :src="article.image" alt="" />
-        </router-link>
-        <div class="article__description">
-          <router-link to="/articles/article/1" class="article__title text-l">
-            Новые стандарты написания курсовых работ: от чего студенты в ужасе
+          <router-link
+            :to="{ name: 'Article', params: { id: article.id } }"
+            class="title text-m"
+            ><img :src="article.image" alt="" class="image" />
           </router-link>
-          <p class="article__date text-s">{{ article.date }}</p>
-          <p class="article__short text-m" v-html="article.shortText"></p>
+          <router-link
+            :to="{ name: 'Article', params: { id: article.id } }"
+            class="title text-m"
+            >{{ article.title }}
+          </router-link>
+          <p class="date text-s">{{ article.date }}</p>
+          <p class="text">{{ article.shortText }}</p>
         </div>
       </div>
     </div>
@@ -30,6 +43,7 @@ import image3 from "../assets/images/articles/article3.jpg";
 export default {
   data() {
     return {
+      articleId: this.$route.params.id,
       articles: [
         {
           id: 1,
@@ -37,7 +51,7 @@ export default {
             "Новые стандарты написания курсовых работ: от чего студенты в ужасе",
           date: "10.05.2021",
           image: image1,
-          shortText: `Современные реалии диктуют новые правила работы над официальными документами.<br>
+          shortText: `Современные реалии диктуют новые правила работы над официальными документами.
 Это коснулось и ГОСТов написания дипломных, курсовых работ...`,
           text: `Правообладатель Times New Roman и других популярных шрифтов запретил их
         использование в российских госучреждениях. Шрифты могут применяться на
@@ -87,41 +101,84 @@ export default {
       ],
     };
   },
+  computed: {
+    otherArticles: function () {
+      return this.articles.filter((el) => el.id != this.articleId);
+    },
+  },
+  watch: {
+    "$route.params.id"() {
+      this.articleId = this.$route.params.id;
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
-.article {
-  display: flex;
-  &:not(:last-child) {
-    margin-bottom: 32px;
-  }
-}
-.article__img {
-  width: 400px;
-  margin-right: 32px;
-  object-fit: cover;
-}
-.article__title {
-  margin-bottom: 0.25em;
+h1 {
+  margin-bottom: 0;
 }
 .article__date {
+  margin-bottom: 2em;
+}
+.article__img {
+  float: right;
+  margin-left: 1em;
+}
+.article__text {
+  margin-bottom: 1.5em;
+}
+.goback-link {
+  margin-bottom: 1.5em;
+}
+.other {
   margin-bottom: 1em;
 }
-@media (max-width: 1440px) {
-  .article {
-    flex-direction: column;
+.other__content {
+  display: flex;
+}
+.other__card {
+  width: 35%;
+  &:not(:last-child) {
+    margin-right: 2em;
   }
+  .image {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 0.25em;
+  }
+  .title {
+    margin-bottom: 0.25em;
+  }
+  .date {
+    margin-bottom: 0.75em;
+  }
+}
+@media (max-width: 1440px) {
   .article__img {
     width: 300px;
     margin-bottom: 0.5em;
   }
-  .article__date {
-    margin-bottom: 0.75em;
+}
+@media (max-width: 768px) {
+  .other__content {
+    flex-direction: column;
+  }
+  .other__card {
+    width: 100%;
+    &:not(:last-child) {
+      margin-right: 0;
+      margin-bottom: 2em;
+    }
   }
 }
 @media (max-width: 475px) {
+  .article__date {
+    margin-bottom: 1em;
+  }
   .article__img {
+    float: none;
+    margin-left: 0;
     width: 100%;
     max-width: 300px;
   }
