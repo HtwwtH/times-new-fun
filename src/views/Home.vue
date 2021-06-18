@@ -29,6 +29,9 @@
 </script>
 
 <style scoped lang="scss">
+h1 {
+  margin-bottom: 0;
+}
 .home__img {
   width: 60%;
   max-width: 1345px;

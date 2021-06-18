@@ -215,6 +215,13 @@ h1, .text-xl {
   h1, .text-xl {
     font-size: 2em;
   }
+  .text-m {
+    font-size: 1.25em;
+    line-height: 1.1;
+  }
+  .text-l {
+    font-size: 1.5em;
+  }
 }
 
 @media (max-width: 768px) {
@@ -222,11 +229,11 @@ h1, .text-xl {
     font-size: 3em;
   }
   .text-m {
-    font-size: 1.25em;
-    line-height: 1.1;
+    line-height: 1;
   }
   .text-l {
     font-size: 1.5em;
+    line-height: 1.1;
   }
 }
 
@@ -239,6 +246,12 @@ h1, .text-xl {
   }
   .slogan {
     font-size: 1em;
+  }
+  .text-m {
+    font-size: 1.2em;
+  }
+  .text-l {
+    font-size: 1.3em;
   }
 }
 
