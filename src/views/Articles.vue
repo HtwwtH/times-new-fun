@@ -2,21 +2,21 @@
   <section class="articles">
     <div class="container">
       <h1>Статьи про Times New Roman</h1>
-      <div v-for="(article, index) in articles" :key="index" class="article">
+      <div v-for="article in articles" :key="article.id" class="article">
         <router-link
           :to="{
             name: 'Article',
             params: { id: article.id },
           }"
         >
-          <img class="article__img" :src="article.image" alt="" />
+          <img class="article__img" :src="articleImage(article.image)" alt="" />
         </router-link>
         <div class="article__description">
           <router-link
             :to="{ name: 'Article', params: { id: article.id } }"
             class="article__title text-l"
           >
-            Новые стандарты написания курсовых работ: от чего студенты в ужасе
+            {{ article.title }}
           </router-link>
           <p class="article__date text-s">{{ article.date }}</p>
           <p class="article__short text-m" v-html="article.shortText"></p>
@@ -27,68 +27,22 @@
 </template>
 
 <script>
-import image1 from "../assets/images/articles/article1.jpg";
-import image2 from "../assets/images/articles/article2.jpg";
-import image3 from "../assets/images/articles/article3.jpg";
+import axios from "axios";
 export default {
   data() {
     return {
-      articles: [
-        {
-          id: 1,
-          title:
-            "Новые стандарты написания курсовых работ: от чего студенты в ужасе",
-          date: "10.05.2021",
-          image: image1,
-          shortText: `Современные реалии диктуют новые правила работы над официальными документами.<br>
-Это коснулось и ГОСТов написания дипломных, курсовых работ...`,
-          text: `Правообладатель Times New Roman и других популярных шрифтов запретил их
-        использование в российских госучреждениях. Шрифты могут применяться на
-        отдельном ПК или для печати документов, но их нельзя передавать с
-        компьютера на компьютер, а также использовать для создания электронных
-        документов или программных продуктов. <br><br>Служащим российских госучреждений
-        придется отказаться от использования распространенных шрифтов типа Times
-        New Roman, Arial, Courier New и т. д. Компания Monotype Imaging, которой
-        принадлежат права на данные шрифты, отказалась предоставить лицензии на
-        их использование в российском ПО. В качестве причины компания указала
-        санкции, введенные США против России. <br><br>В пособии российским чиновникам
-        предлагается решить проблему, перейдя на российское ПО. При этом
-        рекомендуется сменить и ОС, и пакет офисных программ. Служащим
-        госучреждений советуют применять вместо шрифтов Monotype Imaging
-        российские шрифты или зарубежные, но распространяющиеся по открытой
-        лицензии.`,
-        },
-        {
-          id: 2,
-          title: "Альтернативы шрифту Times New Roman",
-          date: "25.03.2021",
-          image: image2,
-          shortText: `Times Roman и Times New Roman — несвободные шрифты. Есть некоторые свободные метрически совместимые шрифты как альтернативы Times Roman...`,
-          text: `Times Roman и Times New Roman — несвободные шрифты. Есть некоторые свободные метрически совместимые шрифты как альтернативы Times Roman и Times New Roman или используемые для замены шрифтов:<br><br>
-
-- URW++ выпустила версию Times New Roman под названием Nimbus Roman в 1982 году. Nimbus Roman №9 L, URW PostScript вариант, был выпущен под GNU General Public License в 1996 году и доступен в бесплатных и операционных системах с открытым кодом. Был позже адаптирован как FreeSerif. Как и для Times New Roman, существует множество дополнительных стилей Nimbus Roman, которые продаются только в коммерческих целях, включая конденсированные и сверх-широкие стили. URW также разработан Nimbus Roman № 4, который метрически совместим с несколько другим CG Times.<br><br>
-- Liberation Serif метрически эквивалентен Times New Roman. Он был разработан Ascender Corp. и издан Red Hat в 2007 году по лицензии GPL с некоторыми исключениями. Используется в некоторых дистрибутивах GNU/Linux в качестве замены шрифта по умолчанию для Times New Roman.<br><br>
-- Шрифт Tinos от компании Google в пакете шрифтов Croscore произошёл от расширения Liberation Serif, также разработан Стивом Маттесоном.<br><br>
-- Bitstream Cyberbit — шрифт, выпущенный компанией Bitstream для некоммерческого использования, для европейских алфавитов и основан на Times New Roman. Он имеет расширенный диапазон символов, предназначенных для того, чтобы покрыть большую часть Unicode для научного использования. Bitstream уже не распространяет шрифт, но он может быть получен от Университета Франкфурта.<br><br>
-- В сентябре 2016 года компаниями АО «НПО РусБИТех» (разработчик операционных систем «Astra Linux» ) и ООО НПП «ПараТайп» (разработчик общенациональных шрифтов ) были представлены общедоступные шрифты: PT Astra Sans и PT Astra Serif, метрически совместимые (аналоги) с Times New Roman.`,
-        },
-        {
-          id: 3,
-          title:
-            "Российским чиновникам запретили использовать шрифт Times New Roman",
-          date: "15.03.2021",
-          image: image3,
-          shortText: `Правообладатель Times New Roman и других популярных шрифтов запретил их использование в российских госучреждениях. Шрифты могут применяться на отдельном ПК или для печати документов, но их нельзя передавать с...`,
-          text: `Современные реалии диктуют новые правила работы над официальными документами.<br>
-Это коснулось и ГОСТов написания дипломных, курсовых работ.<br><br>
-
-Университеты требуют использовать отечественные шрифты: liberation serif, PT Astra.<br><br>
-
-Но у данных шрифтов меньше межбуквенный интервал, чем у Times New Roman, что сокращает
-количество текста в работе в 1.5 раза!`,
-        },
-      ],
+      articles: [],
     };
+  },
+  mounted() {
+    axios.get("../articles.json").then((response) => {
+      this.articles = response.data.articles;
+    });
+  },
+  methods: {
+    articleImage(filename) {
+      return require(`../assets/images/articles/${filename}`);
+    },
   },
 };
 </script>
