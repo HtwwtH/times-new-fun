@@ -27,19 +27,19 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions } from "vuex";
 export default {
-  data() {
-    return {
-      articles: [],
-    };
+  computed: {
+    articles() {
+      return this.$store.getters.articlesList;
+    },
   },
   mounted() {
-    axios.get("../articles.json").then((response) => {
-      this.articles = response.data.articles;
-    });
+    // this.$store.dispatch("fetchArticles");
+    this.fetchArticles();
   },
   methods: {
+    ...mapActions(["fetchArticles"]),
     articleImage(filename) {
       return require(`../assets/images/articles/${filename}`);
     },
